@@ -2,10 +2,8 @@ from flask import Flask, request, jsonify, make_response
 # import json
 from flaskext.mysql import MySQL
 from zk import ZK
-
 mysql = MySQL()
 app = Flask(__name__)
-
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'user'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
@@ -13,7 +11,6 @@ app.config['MYSQL_DATABASE_DB'] = 'db_name'
 app.config['MYSQL_DATABASE_HOST'] = 'host'
 app.config['MYSQL_DATABASE_PORT'] = 33060
 mysql.init_app(app)
-
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
@@ -45,7 +42,6 @@ def create_product():
                 cond.disconnect()
     cursor.close()
     return make_response(jsonify({"data": None, "message": message}), 200)
-
 def add_items(attendances, id, branch_hrm, cursor, conn):
     if len(attendances) > 0:
         query = "INSERT INTO `hrm_data_in_out` (`hrm_timekeeper_id`,`branch_hrm`,`uid`,`user_h_id`,`state`,`work_date`,`work_time`) VALUES "
